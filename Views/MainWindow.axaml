@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CPC.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CPC.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+		x:Name="MWindow"
+        Title="CPC"
+		ExtendClientAreaToDecorationsHint="True"
+		Height="{Binding WindowHeight}"
+		Width="{Binding WindowWidth}"
+		Background="{Binding Color.SS}">
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+	<Panel IsVisible="{Binding ControlVisiblity}">
+		<StackPanel Orientation="Horizontal"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top">
+			<Button Background="Transparent"
+					Content="#"
+					Command="{Binding RandomCommand}"/>
+			<TextBox FontFamily="Sarasa mono J"
+					 Background="Transparent"
+					 HorizontalAlignment="Center"
+					 Text="{Binding Input}"
+					 BorderBrush="Transparent"
+					 >
+				<TextBox.KeyBindings>
+					<KeyBinding Gesture="Enter" Command="{Binding CompleteCommand}"/>
+				</TextBox.KeyBindings>
+			</TextBox>
+		</StackPanel>
+		<Border VerticalAlignment="Bottom" Background="#1F000000">
+			<StackPanel>
+				<ProgressBar CornerRadius="0" Value="{Binding Color.R}" Maximum="255" Foreground="Red"/>
+				<ProgressBar CornerRadius="0" Value="{Binding Color.G}" Maximum="255" Foreground="Green"/>
+				<ProgressBar CornerRadius="0" Value="{Binding Color.B}" Maximum="255" Foreground="Blue"/>
+			</StackPanel>
+		</Border>
+	</Panel>
+</Window>
